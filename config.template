@@ -1,0 +1,11 @@
+# Statuspage API Configuration
+API_URL = 'https://<REDACTED>.statuspage.io/api/v2'
+ENDPOINT = '/subscribers.json'
+SUBSCRIBER_ENDPOINT = '/subscribers/{}.json'
+COMPONENTS_ENDPOINT = '/components.json'
+
+#Salesforce API Configuration
+# The endpoint of the salesforce sandbox or production instance example below is the chris sandbox
+SALESFORCE_ENDPOINT = 'https://duo--chris.cs40.my.salesforce.com/services/Soap/u/20.0'
+SALESFORCE_LOGIN = '<REDACTED>'
+SALESFORCE_PASSWORD = '<REDACTED>'
