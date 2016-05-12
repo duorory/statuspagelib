@@ -1,14 +1,9 @@
 from requests import request
 import json
-
-API_URL = 'https://<REDACTED>.statuspage.io/api/v2'
-ENDPOINT = '/subscribers.json'
-SUBSCRIBER_ENDPOINT = '/subscribers/{}.json'
-COMPONENTS_ENDPOINT = '/components.json'
-
+import config as conf
 
 def getIDfromEmail(email):
-  output = request('GET', API_URL + ENDPOINT, 
+  output = request('GET', conf.API_URL + conf.ENDPOINT, 
                    data={'subscriber[email]':str(email)})
   json_out = json.loads(output.content)
   if not json_out['subscribers']:
@@ -20,7 +15,7 @@ def getIDfromEmail(email):
 
 def getIDbyComponentName(name):
     subComponent = []
-    output = request('GET', API_URL + COMPONENTS_ENDPOINT)
+    output = request('GET', conf.API_URL + conf.COMPONENTS_ENDPOINT)
     json_out = json.loads(output.content)
     for component in json_out['components']:
         if component['name'] == name:
@@ -34,7 +29,7 @@ def getIDbyComponentName(name):
 
 
 def updateSubscription(subscriberID, components):
-  output = request('PATCH', API_URL + SUBSCRIBER_ENDPOINT.format(subscriberID),
+  output = request('PATCH', conf.API_URL + conf.SUBSCRIBER_ENDPOINT.format(subscriberID),
                    data = {'subscriber[components][]':components})
   json_out = json.loads(output.content)
   return json_out
