@@ -8,6 +8,7 @@ def getIDfromEmail(email):
   json_out = json.loads(output.content)
   if not json_out['subscribers']:
     print 'ID Not found for {} address'.format(email)
+    return None
   else:
     subscriberId = json_out['subscribers'][0]['id']
     return subscriberId
@@ -19,10 +20,15 @@ def getIDbyComponentName(name):
     json_out = json.loads(output.content)
     for component in json_out['components']:
         if component['name'] == name:
-            id = component['id']
-    for component in json_out['components']:
-        if component['group_id'] == id:
-            subComponent.append(component['id'])
+          statusPageID = component['id']
+          for component in json_out['components']:
+            if component['group_id'] == statusPageID:
+              subComponent.append(component['id'])
+          print subComponent 
+          return subComponent
+        else:
+          pass
+    print 'not found'
     if not subComponent:
         return None
     return subComponent
