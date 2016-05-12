@@ -20,9 +20,9 @@ def get_updated_deployments(num_days):
 
   for item in res_acct:
     print "\tAccountId: " + item['AccountId']
-    print "\tOldDeploymentId: " + item['OldValue']
-    print "\tNewDeploymentId: " + item['NewValue']
-    return_list.append([get_account_contacts(item['AccountId'], item['OldValue'], item['NewValue'])])
+    print "\tOldDeploymentId: " + item['OldValue'].translate(None, '-')
+    print "\tNewDeploymentId: " + item['NewValue'].translate(None, '-')
+    return_list.append([get_account_contacts(item['AccountId'], item['OldValue'].translate(None, '-'), item['NewValue'].translate(None, '-'))])
   return return_list
     
 
